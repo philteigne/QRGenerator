@@ -3,6 +3,10 @@ import './App.css';
 
 import QRDisplay from './components/QRDisplay';
 
+// basicInput
+// textField
+// listInput
+
 function App() {
 
   // current array input must use double quotes to be valid JSON
@@ -11,22 +15,77 @@ function App() {
   const [arrayInput, setArrayInput] = useState<string[]>([])
   const [displayQRCode, setDisplayQRCode] = useState<Boolean>(false)
 
-  // Given an input string, convert that string to an array
-  const handleGeneration = (input: string) => {
-    setArrayInput(JSON.parse(input));
-  }
+  const [inputType, setInputType] = useState<'basicInput' | 'textInput' | 'listInput'>('textInput')
 
-  useEffect(() => {
-    setDisplayQRCode(!displayQRCode)
-  }, [arrayInput])
+  
+  const handleGeneration = (input: string, inputType: string) => {
+    // Split input string array into array
+    if (inputType === 'basicInput') {
+      // Replace single quotes with double quotes to create valid JSON object
+      input = input.replaceAll("'", '"');
+  
+      setArrayInput(JSON.parse(input));
+      return;
+    }
+
+    // TODO: creates empty canvases for trailing semi-colons
+    // Split input string into array
+    if (inputType === 'textInput') {
+      // Remove delimeter trails
+      input = input.replaceAll("; ", ";");
+
+      setArrayInput(input.split(';'));
+      return;
+    }
+
+    // if (inputType === 'listInput'){
+
+    // }
+  }
 
   return (
     <div className="App">
-      <input onChange={e => setTextInput(e.target.value)}></input>
-        
-      <button onClick={() => handleGeneration(textInput)}>Generate</button>
+      <div className='inputTypeSelection'>
+        <div
+          className='selectorBubble'
+          onClick={() => setInputType('basicInput')}
+        >
+          basicInput
+        </div>
+        <div
+          className='selectorBubble'
+          onClick={() => setInputType('textInput')}
+        >
+          textInput
+        </div>
+        <div
+          className='selectorBubble'
+          onClick={() => setInputType('listInput')}
+        >
+          listInput
+        </div>
+      </div>
 
-      {displayQRCode && 
+
+      {inputType === 'basicInput' && 
+        <input
+          onChange={e => setTextInput(e.target.value)}
+          placeholder='Enter your array of strings. eg. ["item 1", "item 2", "item 3"]'
+        ></input>}
+      {inputType === 'textInput' &&
+        <input
+          onChange={e => setTextInput(e.target.value)}
+          placeholder='Enter your list of strings delimited with semi-colons. eg. item 1; item 2; item 3'
+        ></input>}
+      {inputType === 'listInput' &&
+        <input
+          onChange={e => setTextInput(e.target.value)}
+          placeholder='Enter each of your strings.'
+        ></input>}
+        
+      <button onClick={() => handleGeneration(textInput, inputType)}>Generate</button>
+
+      {arrayInput.length > 0 && 
         arrayInput.map((item: string, index) => {
           return (
             <QRDisplay key={index} input={item} />
