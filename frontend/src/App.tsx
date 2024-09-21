@@ -1,12 +1,7 @@
-import React, { useEffect } from 'react';
-import { useState, useRef } from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
-import QRGenerator from './components/QRGenerator';
 import QRDisplay from './components/QRDisplay';
-
-import { generateQRCodeWeb, generateQRCodeFile } from './helpers/generateQR'
 
 function App() {
 
@@ -27,20 +22,14 @@ function App() {
 
   return (
     <div className="App">
-        <input onChange={e => setTextInput(e.target.value)}></input>
+      <input onChange={e => setTextInput(e.target.value)}></input>
         
-        <button onClick={() => handleGeneration(textInput)}>
-          Generate
-        </button>
+      <button onClick={() => handleGeneration(textInput)}>Generate</button>
 
-        {displayQRCode && 
+      {displayQRCode && 
         arrayInput.map((item: string, index) => {
-
           return (
-            <div key={index}>
-              <QRDisplay input={item} />
-              <QRGenerator input={item} />
-            </div>
+            <QRDisplay key={index} input={item} />
           );
         })
       }
