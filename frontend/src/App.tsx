@@ -13,7 +13,6 @@ function App() {
   const [textInput, setTextInput] = useState<string>("")
 
   const [arrayInput, setArrayInput] = useState<string[]>([])
-  const [displayQRCode, setDisplayQRCode] = useState<Boolean>(false)
 
   const [inputType, setInputType] = useState<'basicInput' | 'textInput'>('textInput')
 
@@ -72,6 +71,10 @@ function App() {
 
       {arrayInput.length > 0 && 
         arrayInput.map((item: string, index) => {
+          // Don't render empty strings
+          if (item.length === 0) {
+            return;
+          }
           return (
             <QRDisplay key={index} input={item} />
           );
