@@ -4,16 +4,17 @@ import logo from './logo.svg';
 import './App.css';
 
 import QRGenerator from './components/QRGenerator';
+import QRDisplay from './components/QRDisplay';
+
 import { generateQRCodeWeb, generateQRCodeFile } from './helpers/generateQR'
 
 function App() {
 
+  // current array input must use double quotes to be valid JSON
   const [textInput, setTextInput] = useState<string>("")
-  const [arrayInput, setArrayInput] = useState<Array<string>>([])
 
+  const [arrayInput, setArrayInput] = useState<string[]>([])
   const [displayQRCode, setDisplayQRCode] = useState<Boolean>(false)
-
-  const QRCanvasRef = useRef<HTMLCanvasElement | null>(null); // Reference to the canvas
 
   // Given an input string, convert that string to an array
   const handleGeneration = (input: string) => {
@@ -31,17 +32,19 @@ function App() {
         <button onClick={() => handleGeneration(textInput)}>
           Generate
         </button>
-        {/* <button onClick={() => generateQRCodeWeb(QRCanvasRef, textInput)}>
-          Generate
-        </button> */}
 
         {displayQRCode && 
-          arrayInput.map((item: string) => {
-            return <QRGenerator input={item}/>
-          })
-        }
-        
-        <canvas ref={QRCanvasRef}>Hello</canvas>
+        arrayInput.map((item: string, index) => {
+
+          return (
+            <div key={index}>
+              <QRDisplay input={item} />
+              <QRGenerator input={item} />
+            </div>
+          );
+        })
+      }
+
     </div>
   );
 }
