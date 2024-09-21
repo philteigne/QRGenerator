@@ -67,11 +67,6 @@ function App() {
           onChange={e => setTextInput(e.target.value)}
           placeholder='Enter your list of strings delimited with semi-colons. eg. item 1; item 2; item 3'
         ></input>}
-      {inputType === 'listInput' &&
-        <input
-          onChange={e => setTextInput(e.target.value)}
-          placeholder='Enter each of your strings.'
-        ></input>}
         
       <button onClick={() => handleGeneration(textInput, inputType)}>Generate</button>
 
