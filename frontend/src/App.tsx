@@ -15,7 +15,7 @@ function App() {
   const [arrayInput, setArrayInput] = useState<string[]>([])
   const [displayQRCode, setDisplayQRCode] = useState<Boolean>(false)
 
-  const [inputType, setInputType] = useState<'basicInput' | 'textInput' | 'listInput'>('textInput')
+  const [inputType, setInputType] = useState<'basicInput' | 'textInput'>('textInput')
 
   
   const handleGeneration = (input: string, inputType: string) => {
@@ -37,10 +37,6 @@ function App() {
       setArrayInput(input.split(';'));
       return;
     }
-
-    // if (inputType === 'listInput'){
-
-    // }
   }
 
   return (
@@ -57,12 +53,6 @@ function App() {
           onClick={() => setInputType('textInput')}
         >
           textInput
-        </div>
-        <div
-          className='selectorBubble'
-          onClick={() => setInputType('listInput')}
-        >
-          listInput
         </div>
       </div>
 
