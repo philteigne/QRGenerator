@@ -3,8 +3,8 @@ import { useState, useRef } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import generateQRCodeWeb from './helpers/generateQR'
-import { text } from 'stream/consumers';
+import QRGenerator from './components/QRGenerator';
+import { generateQRCodeWeb, generateQRCodeFile } from './helpers/generateQR'
 
 function App() {
 
@@ -15,32 +15,18 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
         <input onChange={e => {
           setTextInput(e.target.value)
           setGeneratorView(true)
-          }}></input>
+          }}>  
+        </input>
         
         <canvas ref={QRCanvasRef}>Hello</canvas>
 
         <button onClick={() => generateQRCodeWeb(QRCanvasRef, textInput)}>
           Generate
         </button>
-
-        
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <QRGenerator input={textInput} />
     </div>
   );
 }
