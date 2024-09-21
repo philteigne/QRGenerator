@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { generateQRCodeWeb } from '../helpers/generateQR';
+import { generateQRCodeFile } from '../helpers/generateQR';
 
 
 const QRDisplay = ({ input }: { input: string }) => {
@@ -11,11 +12,13 @@ const QRDisplay = ({ input }: { input: string }) => {
     if (QRCanvasRef.current) {
       generateQRCodeWeb(QRCanvasRef, input);
     }
-  }, []); // Run whenever the input changes
-
+  }, []);
 
   return (
-    <canvas ref={QRCanvasRef}></canvas>
+    <div>
+      <canvas ref={QRCanvasRef}></canvas>
+      <button onClick={() => generateQRCodeFile(input)}>Download</button>
+    </div>
   );
 }
 
