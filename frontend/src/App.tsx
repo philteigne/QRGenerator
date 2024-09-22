@@ -6,6 +6,7 @@ import QRDisplay from './components/QRDisplay';
 // basicInput
 // textField
 // listInput
+// ["item1", "item2"]
 
 function App() {
 
@@ -50,31 +51,32 @@ function App() {
       </header>
 
       <div>
-        <h2>Add some items to get started.</h2>
+        <h2>Add items to get started.</h2>
       </div>
 
-      <div className='inputTypeSelection'>
-        <ul>
-          <li
-            className='selectorBubble'
-            onClick={() => setInputType('basicInput')}
-          >
-            basicInput
-          </li>
-          <li
-            className='selectorBubble'
-            onClick={() => setInputType('textInput')}
-          >
-            textInput
-          </li>
-          <li
-            onClick={() => setAppView('input')}
-          >
-            Edit
-          </li>
-        </ul>
-      </div>
-
+      {appView === 'input' &&
+        <div className='inputTypeSelection'>
+          <ul>
+            <li
+              className='selectorBubble'
+              onClick={() => setInputType('basicInput')}
+            >
+              basicInput
+            </li>
+            <li
+              className='selectorBubble'
+              onClick={() => setInputType('textInput')}
+            >
+              textInput
+            </li>
+            <li
+              onClick={() => setAppView('input')}
+            >
+              Edit
+            </li>
+          </ul>
+        </div>
+      }
       {appView === 'input' &&
         <div className='input'>
           {inputType === 'basicInput' && 
@@ -112,17 +114,19 @@ function App() {
         </div>
       }
       
-      {appView === 'output' && arrayInput.length > 0 && 
-        arrayInput.map((item: string, index) => {
-          // Don't render empty strings
-          if (item.length === 0) {
-            return;
-          }
-          return (
-            <QRDisplay key={index} input={item} />
-          );
-        })
-      }
+      <div className='QRContainer'>
+        {appView === 'output' && arrayInput.length > 0 &&
+          arrayInput.map((item: string, index) => {
+            // Don't render empty strings
+            if (item.length === 0) {
+              return;
+            }
+            return (
+              <QRDisplay key={index} input={item} />
+            );
+          })
+        }
+      </div>
 
     </div>
   );
