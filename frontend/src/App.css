@@ -84,40 +84,43 @@ h1 {
 h2 {
   font-family: 'RedHatDisplay', sans-serif;
   font-weight: normal;
-  font-size: 11pt;
+  font-size: 14pt;
   color: #242423;
 }
 
 h3 {
   font-family: 'RedHatText', sans-serif;
   font-weight: normal;
-  font-size: 9pt;
+  font-size: 12pt;
   color: #242423;
 }
 
 p {
   font-family: 'RedHatText', sans-serif;
   font-weight: normal;
-  font-size: 9pt;
+  font-size: 12pt;
   color: #242423;
 }
 
 li {
   font-family: 'RedHatText', sans-serif;
   font-weight: normal;
-  font-size: 9pt;
+  font-size: 12pt;
   color: #242423;
 }
 
 button {
   font-family: 'RedHatText', sans-serif;
   font-weight: normal;
-  font-size: 9pt;
+  font-size: 12pt;
 
   background-color: #B0413E;
   color: white;
   border: none;
   border-radius: 3px;
+  box-sizing: border-box;
+
+  padding: 3pt 10pt;
 }
 
 button.inverse {
@@ -130,16 +133,41 @@ button.inverse {
 input {
   font-family: 'RedHatText', sans-serif;
   font-weight: normal;
-  font-size: 9pt;
+  font-size: 12pt;
 
   background-color: #EEE;
   color: #242423;
 
   border: none;
   border-radius: 5px;
-  width: calc(100% - 14px);
+  width: 100%;
+  box-sizing: border-box;
   max-height: 55%;
-  padding: 7px;
+  padding: 15px;
+}
+
+textarea {
+  font-family: 'RedHatText', sans-serif;
+  font-weight: normal;
+  font-size: 12pt;
+
+  background-color: #EEE;
+  color: #242423;
+
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  max-height: 55%;
+  height: 55%;
+  padding: 15px;
+
+  resize: none;
+  overflow-y: scroll;
+}
+
+textarea:focus {
+  outline: 2px solid #B0413E;
 }
 
 .App {
@@ -150,7 +178,7 @@ input {
 }
 
 header {
-  height: 19%;
+  height: 10%;
   display: flex;
   align-items: flex-end;
 
@@ -163,7 +191,11 @@ header {
 }
 
 /* MAIN CONTENT */
-div.inputTypeSelection {
+.input {
+  height: 100%
+}
+
+.inputTypeSelection {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -179,3 +211,20 @@ div.inputTypeSelection {
 .inputTypeSelection ul li {
   margin-right: 10%;
 }
+
+
+/* TEXT FIELD TYPES */
+.formControl {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+
+  margin-top: 5%;
+}
+
+.formControl button {
+  margin-left: 20px;
+}
+
+
+/* QR CODE DISPLAY */
