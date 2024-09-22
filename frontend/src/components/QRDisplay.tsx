@@ -15,9 +15,15 @@ const QRDisplay = ({ input }: { input: string }) => {
   }, []);
 
   return (
-    <div>
-      <canvas ref={QRCanvasRef}></canvas>
-      <button onClick={() => generateQRCodeFile(input)}>Download</button>
+    <div className='QRDisplay'>
+      <canvas className='QRCanvas' ref={QRCanvasRef}></canvas>
+      <div className='QRInfo'>
+        <h3>{input}</h3>
+        <div>
+          <button onClick={() => generateQRCodeFile(input)}>S</button>
+          <button onClick={() => generateQRCodeFile(input)}>D</button>
+        </div>
+      </div>
     </div>
   );
 }
