@@ -3,6 +3,10 @@ import './App.css';
 
 import QRDisplay from './components/QRDisplay';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShareNodes, faDownload, faPenToSquare, faPlus, faXmark } from '@fortawesome/free-solid-svg-icons'
+
+
 // basicInput
 // textField
 // listInput
@@ -49,6 +53,13 @@ function App() {
       <header>
         <h1 id='title'>BulQR</h1>
       </header>
+
+
+      {/* <FontAwesomeIcon size='3x' icon={faShareNodes} />
+      <FontAwesomeIcon size='3x' icon={faDownload} />
+      <FontAwesomeIcon size='3x' icon={faPenToSquare} />
+      <FontAwesomeIcon size='3x' icon={faPlus} />
+      <FontAwesomeIcon size='3x' icon={faXmark} /> */}
 
       <div>
         <h2>Add items to get started.</h2>
