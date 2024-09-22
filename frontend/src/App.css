@@ -243,7 +243,6 @@ header {
 
 .QRDisplay {
   width: 100%;
-  aspect-ratio: 1/1.12;
 
   border-radius: 10px;
   background-color: #B0413E;
@@ -274,7 +273,7 @@ canvas.QRCanvas {
   justify-content: space-between;
   align-self: bottom;
 
-  padding: 0 2%;
+  padding: 2% 2% 0 2%;
 }
 
 .QRInfo h3 {
