@@ -7,7 +7,12 @@ export const generateQRCodeWeb = (QRCanvas: React.RefObject<HTMLCanvasElement>, 
     return;
   }
 
-  QRCode.toCanvas(QRCanvas.current, input, (error: any) => {
+  const canvasWidth = QRCanvas.current.clientWidth;
+  const canvasHeight = QRCanvas.current.clientHeight;
+
+  console.log(canvasWidth)
+
+  QRCode.toCanvas(QRCanvas.current, input, {width: canvasWidth, height: canvasHeight}, (error: any) => {
     if (error) {
       console.log(error)
     } else {
