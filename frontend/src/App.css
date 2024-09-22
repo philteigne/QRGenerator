@@ -1,38 +1,181 @@
-.App {
-  text-align: center;
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* ---------------------------- */
+
+
+/* FONTS */
+@font-face {
+  font-family: 'RedHatDisplay';
+  src: url('./assets/fonts/RedHatDisplay-Regular.ttf');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'RedHatDisplay';
+  src: url('./assets/fonts/RedHatDisplay-SemiBold.ttf');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'RedHatText';
+  src: url('./assets/fonts/RedHatText-Regular.ttf');
+  font-weight: normal;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+/* APP LEVEL */
+html, body {
+  height: 100%;
+  margin: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+h1 {
+  font-family: 'RedHatDisplay', sans-serif;
+  font-weight: bold;
+  font-size: 24pt;
+  color: #242423;
+}
+
+h2 {
+  font-family: 'RedHatDisplay', sans-serif;
+  font-weight: normal;
+  font-size: 11pt;
+  color: #242423;
+}
+
+h3 {
+  font-family: 'RedHatText', sans-serif;
+  font-weight: normal;
+  font-size: 9pt;
+  color: #242423;
+}
+
+p {
+  font-family: 'RedHatText', sans-serif;
+  font-weight: normal;
+  font-size: 9pt;
+  color: #242423;
+}
+
+li {
+  font-family: 'RedHatText', sans-serif;
+  font-weight: normal;
+  font-size: 9pt;
+  color: #242423;
+}
+
+button {
+  font-family: 'RedHatText', sans-serif;
+  font-weight: normal;
+  font-size: 9pt;
+
+  background-color: #B0413E;
   color: white;
+  border: none;
+  border-radius: 3px;
 }
 
-.App-link {
-  color: #61dafb;
+button.inverse {
+  background-color: white;
+  color: #B0413E;
+  border: 1px solid #B0413E;
+  border-radius: 3px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input {
+  font-family: 'RedHatText', sans-serif;
+  font-weight: normal;
+  font-size: 9pt;
+
+  background-color: #EEE;
+  color: #242423;
+
+  border: none;
+  border-radius: 5px;
+  width: calc(100% - 14px);
+  max-height: 55%;
+  padding: 7px;
+}
+
+.App {
+  height: 100vh;
+  width: 85%;
+  align-self: center;
+  margin: auto;
+}
+
+header {
+  height: 19%;
+  display: flex;
+  align-items: flex-end;
+
+  margin-bottom: 12%;
+}
+
+/* HEADER */
+#title {
+  border-bottom: 1px solid #242423;
+}
+
+/* MAIN CONTENT */
+div.inputTypeSelection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  margin: 5% 0 2% 0;
+}
+
+.inputTypeSelection ul {
+  display: flex;
+  flex-direction: row;
+}
+
+.inputTypeSelection ul li {
+  margin-right: 10%;
 }
