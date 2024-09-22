@@ -18,6 +18,8 @@ function App() {
 
   
   const handleGeneration = (input: string, inputType: string) => {
+
+    // TODO elsif instead of return
     // Split input string array into array
     if (inputType === 'basicInput') {
       // Replace single quotes with double quotes to create valid JSON object
@@ -31,6 +33,7 @@ function App() {
     // Split input string into array
     if (inputType === 'textInput') {
       // Remove delimeter trails
+      // Trim string
       input = input.replaceAll("; ", ";");
 
       setArrayInput(input.split(';'));
@@ -40,21 +43,30 @@ function App() {
 
   return (
     <div className="App">
-      <div className='inputTypeSelection'>
-        <div
-          className='selectorBubble'
-          onClick={() => setInputType('basicInput')}
-        >
-          basicInput
-        </div>
-        <div
-          className='selectorBubble'
-          onClick={() => setInputType('textInput')}
-        >
-          textInput
-        </div>
+      <header>
+        <h1 id='title'>BulQR</h1>
+      </header>
+
+      <div>
+        <h2>Add some items to get started.</h2>
       </div>
 
+      <div className='inputTypeSelection'>
+        <ul>
+          <li
+            className='selectorBubble'
+            onClick={() => setInputType('basicInput')}
+          >
+            basicInput
+          </li>
+          <li
+            className='selectorBubble'
+            onClick={() => setInputType('textInput')}
+          >
+            textInput
+          </li>
+        </ul>
+      </div>
 
       {inputType === 'basicInput' && 
         <input
@@ -67,7 +79,7 @@ function App() {
           placeholder='Enter your list of strings delimited with semi-colons. eg. item 1; item 2; item 3'
         ></input>}
         
-      <button onClick={() => handleGeneration(textInput, inputType)}>Generate</button>
+      <button className="inverse" onClick={() => handleGeneration(textInput, inputType)}>Generate</button>
 
       {arrayInput.length > 0 && 
         arrayInput.map((item: string, index) => {
