@@ -14,7 +14,9 @@ function App() {
 
   const [arrayInput, setArrayInput] = useState<string[]>([])
 
-  const [inputType, setInputType] = useState<'basicInput' | 'textInput'>('textInput')
+  const [inputType, setInputType] = useState<'basicInput' | 'textInput'>('basicInput')
+
+  const [appView, setAppView] = useState<'input' | 'output'>('input')
 
   
   const handleGeneration = (input: string, inputType: string) => {
@@ -65,23 +67,52 @@ function App() {
           >
             textInput
           </li>
+          <li
+            onClick={() => setAppView('input')}
+          >
+            Edit
+          </li>
         </ul>
       </div>
 
-      {inputType === 'basicInput' && 
-        <input
-          onChange={e => setTextInput(e.target.value)}
-          placeholder='Enter your array of strings. eg. ["item 1", "item 2", "item 3"]'
-        ></input>}
-      {inputType === 'textInput' &&
-        <input
-          onChange={e => setTextInput(e.target.value)}
-          placeholder='Enter your list of strings delimited with semi-colons. eg. item 1; item 2; item 3'
-        ></input>}
-        
-      <button className="inverse" onClick={() => handleGeneration(textInput, inputType)}>Generate</button>
-
-      {arrayInput.length > 0 && 
+      {appView === 'input' &&
+        <div className='input'>
+          {inputType === 'basicInput' && 
+            <textarea
+              onChange={e => setTextInput(e.target.value)}
+              placeholder='Enter your array of strings. eg. ["item 1", "item 2", "item 3"]'
+              className='textField'
+            ></textarea>}
+          {inputType === 'textInput' &&
+            <textarea
+              onChange={e => setTextInput(e.target.value)}
+              placeholder='Enter your list of strings delimited with semi-colons. eg. item 1; item 2; item 3'
+              className='textField'
+            ></textarea>}
+          
+          <div className='formControl'>
+            <button
+              className="inverse"
+              onClick={() => {
+                handleGeneration(textInput, inputType)
+                setAppView('input')
+              }}
+            >
+              Reset
+            </button>
+            <button
+              onClick={() => {
+                handleGeneration(textInput, inputType)
+                setAppView('output')
+              }}
+            >
+              Generate
+            </button>
+          </div>
+        </div>
+      }
+      
+      {appView === 'output' && arrayInput.length > 0 && 
         arrayInput.map((item: string, index) => {
           // Don't render empty strings
           if (item.length === 0) {
