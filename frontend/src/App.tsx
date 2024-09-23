@@ -39,34 +39,21 @@ function App() {
   const handleListInputDelete = (index: number) => {
     const updatedItems = [...arrayInput]
     updatedItems.splice(index, 1)
-    console.log(index)
-    console.log(arrayInput)
     
     setArrayInput(updatedItems)
-    console.log(arrayInput)
   }
 
   const handleGeneration = (input: string, inputType: string) => {
 
-    // TODO elsif instead of return
-    // Split input string array into array
     if (inputType === 'basicInput') {
-      // Replace single quotes with double quotes to create valid JSON object
       input = input.replaceAll("'", '"');
   
       setArrayInput(JSON.parse(input));
-      return;
-    }
-
-    // TODO: creates empty canvases for trailing semi-colons
-    // Split input string into array
-    if (inputType === 'textInput') {
-      // Remove delimeter trails
-      // Trim string
+    } else if (inputType === 'textInput') {
       input = input.replaceAll("; ", ";");
 
       setArrayInput(input.split(';'));
-      return;
+      setArrayInput(arrayInput.map(item => item.trim()));
     }
   }
 
