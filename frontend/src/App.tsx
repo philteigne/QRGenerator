@@ -23,6 +23,8 @@ function App() {
 
   const [appView, setAppView] = useState<'input' | 'output'>('input')
 
+  const [errorMsg, setErrorMsg] = useState<string>('')
+
   const handleListInputChange = (index: number, newValue: string) => {
     const updatedItems = [...arrayInput];
 
@@ -45,16 +47,40 @@ function App() {
 
   const handleGeneration = (input: string, inputType: string) => {
 
-    if (inputType === 'basicInput') {
-      input = input.replaceAll("'", '"');
-  
-      setArrayInput(JSON.parse(input));
-    } else if (inputType === 'textInput') {
-      input = input.replaceAll("; ", ";");
+    let error = '';
 
-      setArrayInput(input.split(';'));
-      setArrayInput(arrayInput.map(item => item.trim()));
+    if (inputType === 'listInput') {
+      // Check for errors
+      if (!arrayInput.find(item => item.length > 0)) {
+        error = ('Input should include at least one item')
+      }
+
+    } else if (inputType === 'basicInput') {
+
+      try {
+        setArrayInput(JSON.parse(input));
+      } catch(e) {
+        error = ('Input is not valid JSON')
+      }
+
+    } else if (inputType === 'textInput') {      
+      const newInput = input.split(';').map(item => item.trim()).filter((item) => item.length > 0)
+
+      if (newInput.length === 0) {
+        error = ('Input should include at least one character')
+      } else if (!newInput.find(item => item.length > 2331)) {
+        error = ('Input items should each be less than 2332 characters')
+      }
+
+      setArrayInput(newInput);
     }
+
+    if (error) {
+      setErrorMsg(error);
+      return
+    }
+
+    setAppView('output');
   }
 
   return (
@@ -165,8 +191,9 @@ function App() {
             </button>
             <button
               onClick={() => {
-                handleGeneration(textInput, inputType)
-                setAppView('output')
+                setErrorMsg('');
+                handleGeneration(textInput, inputType);
+                console.log(errorMsg)
               }}
             >
               Generate
