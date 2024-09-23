@@ -203,7 +203,10 @@ textarea {
   padding: 15px;
 
   resize: none;
+
   overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 textarea:focus {
@@ -276,6 +279,8 @@ header {
   height: 75%;
 
   overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .inputContainer {
@@ -326,12 +331,14 @@ header {
   flex-direction: column;
 
   overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 
   margin-top: 5%;
 }
 
 .QRDisplay {
-  width: 100%;
+  width: 90%;
 
   border-radius: 10px;
   background-color: #B0413E;
@@ -343,7 +350,7 @@ header {
   padding: 6px;
   box-sizing: border-box;
 
-  margin-bottom: 25px;
+  margin: 0 auto 25px auto;
 }
 
 canvas.QRCanvas {
