@@ -76,16 +76,22 @@ function App() {
         <h1 id='title'>BulQR</h1>
       </header>
 
-
-      {/* <FontAwesomeIcon size='3x' icon={faShareNodes} />
-      <FontAwesomeIcon size='3x' icon={faDownload} />
-      <FontAwesomeIcon size='3x' icon={faPenToSquare} />
-      <FontAwesomeIcon size='3x' icon={faPlus} />
-      <FontAwesomeIcon icon={faXmark} /> */}
-
-      <div>
-        <h2>Add items to get started.</h2>
-      </div>
+      {appView === 'input' &&
+        <div>
+          <h2>Add items to get started.</h2>
+        </div>
+      }
+      
+        
+      {appView === 'output' &&
+        <div>
+          <h2>Your QR codes are ready.</h2>
+          <div className='outputControl'>
+            <a className='aButton'><FontAwesomeIcon icon={faPenToSquare} /></a>
+            <a className='aButton'><FontAwesomeIcon icon={faDownload} /></a>
+          </div>
+        </div>
+      }
 
       {appView === 'input' &&
         <div className='inputTypeSelection'>
