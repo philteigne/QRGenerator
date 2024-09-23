@@ -199,6 +199,9 @@ function App() {
               Generate
             </button>
           </div>
+          <div className='errorDisplay'>
+            <h2 className='error'>{errorMsg}</h2>
+          </div>
         </div>
       }
       
