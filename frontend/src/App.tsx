@@ -87,7 +87,7 @@ function App() {
         <div className='output'>
           <h2>Your QR codes are ready.</h2>
           <div className='outputControl'>
-            <a className='aButton inverse'><FontAwesomeIcon icon={faPenToSquare} /></a>
+            <a className='aButton inverse' onClick={() => setAppView('input')}><FontAwesomeIcon icon={faPenToSquare} /></a>
             <a className='aButton'><FontAwesomeIcon icon={faDownload} /></a>
           </div>
         </div>
