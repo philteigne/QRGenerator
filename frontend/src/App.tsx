@@ -17,13 +17,35 @@ function App() {
   // current array input must use double quotes to be valid JSON
   const [textInput, setTextInput] = useState<string>("")
 
-  const [arrayInput, setArrayInput] = useState<string[]>([])
+  const [arrayInput, setArrayInput] = useState<string[]>([''])
 
-  const [inputType, setInputType] = useState<'basicInput' | 'textInput'>('basicInput')
+  const [inputType, setInputType] = useState<'listInput' | 'basicInput' | 'textInput'>('listInput')
 
   const [appView, setAppView] = useState<'input' | 'output'>('input')
 
-  
+  const handleListInputChange = (index: number, newValue: string) => {
+    const updatedItems = [...arrayInput];
+
+    updatedItems[index] = newValue;
+    setArrayInput(updatedItems);
+  }
+
+  const handleListInputAdd = () => {
+    const updatedItems = [...arrayInput, '']
+
+    setArrayInput(updatedItems)
+  }
+
+  const handleListInputDelete = (index: number) => {
+    const updatedItems = [...arrayInput]
+    updatedItems.splice(index, 1)
+    console.log(index)
+    console.log(arrayInput)
+    
+    setArrayInput(updatedItems)
+    console.log(arrayInput)
+  }
+
   const handleGeneration = (input: string, inputType: string) => {
 
     // TODO elsif instead of return
@@ -59,7 +81,7 @@ function App() {
       <FontAwesomeIcon size='3x' icon={faDownload} />
       <FontAwesomeIcon size='3x' icon={faPenToSquare} />
       <FontAwesomeIcon size='3x' icon={faPlus} />
-      <FontAwesomeIcon size='3x' icon={faXmark} /> */}
+      <FontAwesomeIcon icon={faXmark} /> */}
 
       <div>
         <h2>Add items to get started.</h2>
@@ -69,27 +91,52 @@ function App() {
         <div className='inputTypeSelection'>
           <ul>
             <li
-              className='selectorBubble'
+              className={inputType === 'listInput' ? 'underline' : ''}
+              onClick={() => setInputType('listInput')}
+            >
+              Listed
+            </li>
+            <li
+              className={inputType === 'basicInput' ? 'underline' : ''}
               onClick={() => setInputType('basicInput')}
             >
-              basicInput
+              JSON
             </li>
             <li
-              className='selectorBubble'
+              className={inputType === 'textInput' ? 'underline' : ''}
               onClick={() => setInputType('textInput')}
             >
-              textInput
-            </li>
-            <li
-              onClick={() => setAppView('input')}
-            >
-              Edit
+              Delimeted
             </li>
           </ul>
         </div>
       }
       {appView === 'input' &&
         <div className='input'>
+          {inputType === 'listInput' && 
+            <div>
+              {arrayInput.map((item, index) => {
+                return (
+                  <div className='inputContainer'>
+                    <input
+                      value={item}
+                      onChange={(e) => {handleListInputChange(index, e.target.value)}}
+                    ></input>
+                    <FontAwesomeIcon
+                      className='FontAwesomeIcon'
+                      icon={faXmark}
+                      onClick={() => {handleListInputDelete(index)}}
+                    />
+                  </div>
+                )
+              })}
+              <div className='inputContainer' onClick={() => handleListInputAdd()}>
+                <a className='aButton alt'>
+                  <FontAwesomeIcon className='FontAwesomeIcon' icon={faPlus} />
+                </a>
+              </div>
+            </div>
+          }
           {inputType === 'basicInput' && 
             <textarea
               onChange={e => setTextInput(e.target.value)}
