@@ -109,6 +109,10 @@ li {
   color: #242423;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 button {
   font-family: 'RedHatText', sans-serif;
   font-weight: normal;
@@ -130,6 +134,22 @@ button.inverse {
   border-radius: 3px;
 }
 
+.aButton {
+  height: 30px;
+  width: 30px;
+
+  border-radius: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a.alt {
+  background-color: #242423;
+  color: #eee;
+}
+
 input {
   font-family: 'RedHatText', sans-serif;
   font-weight: normal;
@@ -142,8 +162,11 @@ input {
   border-radius: 5px;
   width: 100%;
   box-sizing: border-box;
-  max-height: 55%;
-  padding: 15px;
+  padding: 10px;
+}
+
+input:focus {
+  outline: none;
 }
 
 textarea {
@@ -212,11 +235,11 @@ header {
 }
 
 .inputTypeSelection ul li {
-  margin-right: 10%;
+  margin-right: 6%;
 }
 
 
-/* TEXT FIELD TYPES */
+/* TEXT FIELDS */
 .formControl {
   display: flex;
   flex-direction: row;
@@ -227,6 +250,30 @@ header {
 
 .formControl button {
   margin-left: 20px;
+}
+
+/* INPUT FIELDS */
+.inputContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #EEE;
+
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  height: 41px;
+  box-sizing: border-box;
+
+  margin-bottom: 10pt;
+}
+
+.inputContainer .FontAwesomeIcon {
+  padding: 10px;
+  align-self: center;
+  justify-self: center;
 }
 
 
@@ -285,3 +332,5 @@ canvas.QRCanvas {
   display: flex;
   flex-direction: row;
 }
+
+
