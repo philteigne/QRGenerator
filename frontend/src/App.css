@@ -219,6 +219,7 @@ header {
 /* MAIN CONTENT */
 .input {
   flex-grow: 1;
+  justify-content: space-between;
 }
 
 .inputTypeSelection {
@@ -253,6 +254,13 @@ header {
 }
 
 /* INPUT FIELDS */
+.listInputContainer {
+  max-height: 75%;
+  height: 75%;
+
+  overflow-y: scroll;
+}
+
 .inputContainer {
   display: flex;
   flex-direction: row;
