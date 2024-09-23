@@ -143,9 +143,18 @@ button.inverse {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  background-color: #B0413E;
+  color: white;
 }
 
 a.inverse {
+  border: 1px #B0413E solid;
+  color: #B0413E;
+  background-color: white;
+}
+
+a.inverseWhite {
   border: 1px #EEE solid;
   color: white;
 }
@@ -293,6 +302,23 @@ header {
 }
 
 
+/* OUTPUT VIEW */
+.output {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.output .outputControl {
+  display: flex;
+  flex-direction: row;
+}
+
+.output .outputControl a {
+  margin-left: 15px;
+}
+
 /* QR CODE DISPLAY */
 .QRContainer {
   width: 100%;
@@ -350,7 +376,7 @@ canvas.QRCanvas {
 }
 
 .QRControl a {
-  margin-left: 20px;
+  margin-left: 15px;
 }
 
 
