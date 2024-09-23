@@ -77,17 +77,17 @@ function App() {
       </header>
 
       {appView === 'input' &&
-        <div>
+        <div className='output'>
           <h2>Add items to get started.</h2>
         </div>
       }
       
         
       {appView === 'output' &&
-        <div>
+        <div className='output'>
           <h2>Your QR codes are ready.</h2>
           <div className='outputControl'>
-            <a className='aButton'><FontAwesomeIcon icon={faPenToSquare} /></a>
+            <a className='aButton inverse'><FontAwesomeIcon icon={faPenToSquare} /></a>
             <a className='aButton'><FontAwesomeIcon icon={faDownload} /></a>
           </div>
         </div>
