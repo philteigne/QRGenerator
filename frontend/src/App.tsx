@@ -92,19 +92,28 @@ function App() {
           <ul>
             <li
               className={inputType === 'listInput' ? 'underline' : ''}
-              onClick={() => setInputType('listInput')}
+              onClick={() => {
+                setInputType('listInput')
+                setArrayInput([''])
+              }}
             >
               Listed
             </li>
             <li
               className={inputType === 'basicInput' ? 'underline' : ''}
-              onClick={() => setInputType('basicInput')}
+              onClick={() => {
+                setInputType('basicInput')
+                setArrayInput([''])
+              }}
             >
               JSON
             </li>
             <li
               className={inputType === 'textInput' ? 'underline' : ''}
-              onClick={() => setInputType('textInput')}
+              onClick={() => {
+                setInputType('textInput')
+                setArrayInput([''])
+              }}
             >
               Delimeted
             </li>
@@ -114,7 +123,7 @@ function App() {
       {appView === 'input' &&
         <div className='input'>
           {inputType === 'listInput' && 
-            <div>
+            <div className='listInputContainer'>
               {arrayInput.map((item, index) => {
                 return (
                   <div className='inputContainer'>
@@ -155,6 +164,7 @@ function App() {
               className="inverse"
               onClick={() => {
                 handleGeneration(textInput, inputType)
+                setArrayInput([''])
                 setAppView('input')
               }}
             >
