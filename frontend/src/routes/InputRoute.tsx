@@ -77,8 +77,13 @@ const InputRoute = (
           <li
             className={state.inputType === 'listInput' ? 'underline' : ''}
             onClick={() => {
+              if (state.inputType === 'listInput') {
+                return;
+              }
+
               dispatch({type: "SET_INPUT_TYPE", payload: 'listInput'})
               dispatch({type: "SET_ARRAY_INPUT", payload: ['']})
+              dispatch({type: "SET_TEXT_INPUT", payload: ''})
               dispatch({type: "SET_ERROR_MSG", payload: ''})
             }}
           >
@@ -87,8 +92,13 @@ const InputRoute = (
           <li
             className={state.inputType === 'basicInput' ? 'underline' : ''}
             onClick={() => {
+              if (state.inputType === 'basicInput') {
+                return;
+              }
+
               dispatch({type: "SET_INPUT_TYPE", payload: 'basicInput'})
               dispatch({type: "SET_ARRAY_INPUT", payload: ['']})
+              dispatch({type: "SET_TEXT_INPUT", payload: ''})
               dispatch({type: "SET_ERROR_MSG", payload: ''})
             }}
           >
@@ -97,8 +107,13 @@ const InputRoute = (
           <li
             className={state.inputType === 'textInput' ? 'underline' : ''}
             onClick={() => {
+              if (state.inputType === 'textInput') {
+                return;
+              }
+
               dispatch({type: "SET_INPUT_TYPE", payload: 'textInput'})
               dispatch({type: "SET_ARRAY_INPUT", payload: ['']})
+              dispatch({type: "SET_TEXT_INPUT", payload: ''})
               dispatch({type: "SET_ERROR_MSG", payload: ''})
             }}
           >
