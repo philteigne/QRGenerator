@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShareNodes, faDownload, faPenToSquare, faPlus, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 import { stateObject, actionObject } from '../interfaces/StateInterfaces'
 
@@ -151,6 +151,8 @@ const InputRoute = (
             onClick={() => {
               handleGeneration(state.textInput, state.inputType)
               dispatch({type: "SET_ARRAY_INPUT", payload: ['']})
+              dispatch({type: "SET_TEXT_INPUT", payload: ''})
+              dispatch({type: "SET_ERROR_MSG", payload: ''})
               dispatch({type: "SET_APP_VIEW", payload: 'input'})
             }}
           >
