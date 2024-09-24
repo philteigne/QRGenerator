@@ -312,15 +312,17 @@ header {
 .errorDisplay {
   width: 90%;
 
-  background-color: #D7A09E;
-  border: 1px solid #B0413E;
+  background-color: #FFDFDE;
   border-radius: 5px;
   
   padding: 8pt;
   margin: 12pt auto 0 auto;
 
   box-sizing: border-box;
+}
 
+.errorDisplay .error {
+  color: #B0413E;
 }
 
 
