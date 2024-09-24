@@ -268,6 +268,10 @@ header {
   margin-right: 6%;
 }
 
+.inputTypeSelection ul li:hover {
+  cursor: pointer;
+}
+
 
 /* TEXT FIELDS */
 .formControl {
