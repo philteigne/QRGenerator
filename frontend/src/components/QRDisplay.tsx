@@ -21,12 +21,14 @@ const QRDisplay = ({ input }: { input: string }) => {
       generateQRCodeWeb(QRCanvasRef, input);
     }
   }, []);
-
+  
   return (
     <div className='QRDisplay'>
       <canvas className='QRCanvas' ref={QRCanvasRef}></canvas>
       <div className='QRInfo'>
-        <h3>{input}</h3>
+        <h3>
+          {input.length <= 10 ? input : input.slice(0, 9) + '...'}
+        </h3>
         <div className='QRControl'>
           <a className='aButton inverse' onClick={() => generateQRCodeFile(input)}>
             <FontAwesomeIcon icon={faShareNodes} />
