@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons'
 
-import { stateObject, actionObject } from '../interfaces/StateInterfaces'
+import { stateObject } from '../interfaces/StateInterfaces'
 
 const InputRoute = (
   {state, dispatch}:

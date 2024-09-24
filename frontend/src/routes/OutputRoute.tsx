@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShareNodes, faDownload, faPenToSquare, faPlus, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faDownload, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 
 import { stateObject } from '../interfaces/StateInterfaces'
 
