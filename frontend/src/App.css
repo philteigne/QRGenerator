@@ -238,7 +238,7 @@ header {
 
 /* MAIN CONTENT */
 .input {
-  max-height: 65%;
+  max-height: 55%;
   flex-grow: 1;
   justify-content: space-between;
 }
@@ -405,4 +405,78 @@ canvas.QRCanvas {
   margin-left: 15px;
 }
 
+@media only screen and (min-width: 768px) {
+  .listInputContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: flex-start;
+    flex-wrap: wrap;
+  } 
 
+  .inputContainer {
+    width: 47%;
+  }
+
+  .QRContainer {
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: flex-start;
+  }
+
+  .QRDisplay {
+    width: 45%;
+  
+    border-radius: 10px;
+    background-color: #B0413E;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  
+    padding: 6px;
+    box-sizing: border-box;
+  
+    margin: 0 auto 25px auto;
+  }
+
+}
+
+@media only screen and (min-width: 960px) {
+  header {
+    margin-bottom: 2%;
+  }
+
+  .inputTypeSelection {
+    margin: 2% 0 1% 0;
+  }
+
+  .input {
+    max-height: 45%;
+  }
+
+  .QRContainer {
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: flex-start;
+  }
+
+  .QRDisplay {
+    width: 30%;
+  
+    border-radius: 10px;
+    background-color: #B0413E;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  
+    padding: 6px;
+    box-sizing: border-box;
+  
+    margin: 0 auto 25px auto;
+  }
+
+}
