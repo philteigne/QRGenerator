@@ -135,12 +135,14 @@ const InputRoute = (
         {state.inputType === 'basicInput' && 
           <textarea
             onChange={e => dispatch({type: "SET_TEXT_INPUT", payload: e.target.value})}
+            value={state.textInput}
             placeholder='Enter your array of strings. eg. ["item 1", "item 2", "item 3"]'
             className='textField'
           ></textarea>}
         {state.inputType === 'textInput' &&
           <textarea
             onChange={e => dispatch({type: "SET_TEXT_INPUT", payload: e.target.value})}
+            value={state.textInput}
             placeholder='Enter your list of strings delimited with semi-colons. eg. item 1; item 2; item 3'
             className='textField'
           ></textarea>}
