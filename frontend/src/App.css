@@ -127,6 +127,10 @@ button {
   padding: 3pt 10pt;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 button.inverse {
   background-color: white;
   color: #B0413E;
@@ -146,6 +150,10 @@ button.inverse {
 
   background-color: #B0413E;
   color: white;
+}
+
+.aButton:hover {
+  cursor: pointer;
 }
 
 a.inverse {
@@ -428,9 +436,7 @@ canvas.QRCanvas {
 
   .QRDisplay {
     width: 45%;
-  
 
-  
     margin: 0 0 25px 0;
   }
 
