@@ -66,9 +66,9 @@ function App() {
     } else if (inputType === 'textInput') {      
       const newInput = input.split(';').map(item => item.trim()).filter((item) => item.length > 0)
 
-      if (newInput.length === 0) {
+      if (!arrayInput.find(item => item.length > 0)) {
         error = ('Input should include at least one character')
-      } else if (!newInput.find(item => item.length > 2331)) {
+      } else if (newInput.find(item => item.length > 2331)) {
         error = ('Input items should each be less than 2332 characters')
       }
 
@@ -114,6 +114,7 @@ function App() {
               onClick={() => {
                 setInputType('listInput')
                 setArrayInput([''])
+                setErrorMsg('')
               }}
             >
               Listed
@@ -123,6 +124,7 @@ function App() {
               onClick={() => {
                 setInputType('basicInput')
                 setArrayInput([''])
+                setErrorMsg('')
               }}
             >
               JSON
@@ -132,6 +134,7 @@ function App() {
               onClick={() => {
                 setInputType('textInput')
                 setArrayInput([''])
+                setErrorMsg('')
               }}
             >
               Delimeted
@@ -199,9 +202,10 @@ function App() {
               Generate
             </button>
           </div>
+          {errorMsg &&
           <div className='errorDisplay'>
             <h2 className='error'>{errorMsg}</h2>
-          </div>
+          </div>}
         </div>
       }
       
