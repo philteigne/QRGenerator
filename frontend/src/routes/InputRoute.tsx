@@ -66,6 +66,13 @@ const InputRoute = (
     dispatch({type: "SET_APP_VIEW", payload: 'output'});
   }
 
+  const handleInputTypeChange = (inputType: 'listInput' | 'basicInput' | 'textInput') => {
+    dispatch({type: "SET_INPUT_TYPE", payload: inputType})
+    dispatch({type: "SET_ARRAY_INPUT", payload: ['']})
+    dispatch({type: "SET_TEXT_INPUT", payload: ''})
+    dispatch({type: "SET_ERROR_MSG", payload: ''})
+  }
+
   return (
     <>
       <div className='output'>
@@ -81,10 +88,7 @@ const InputRoute = (
                 return;
               }
 
-              dispatch({type: "SET_INPUT_TYPE", payload: 'listInput'})
-              dispatch({type: "SET_ARRAY_INPUT", payload: ['']})
-              dispatch({type: "SET_TEXT_INPUT", payload: ''})
-              dispatch({type: "SET_ERROR_MSG", payload: ''})
+              handleInputTypeChange('listInput')
             }}
           >
             Listed
@@ -96,10 +100,7 @@ const InputRoute = (
                 return;
               }
 
-              dispatch({type: "SET_INPUT_TYPE", payload: 'basicInput'})
-              dispatch({type: "SET_ARRAY_INPUT", payload: ['']})
-              dispatch({type: "SET_TEXT_INPUT", payload: ''})
-              dispatch({type: "SET_ERROR_MSG", payload: ''})
+              handleInputTypeChange('basicInput')
             }}
           >
             JSON
@@ -111,10 +112,7 @@ const InputRoute = (
                 return;
               }
 
-              dispatch({type: "SET_INPUT_TYPE", payload: 'textInput'})
-              dispatch({type: "SET_ARRAY_INPUT", payload: ['']})
-              dispatch({type: "SET_TEXT_INPUT", payload: ''})
-              dispatch({type: "SET_ERROR_MSG", payload: ''})
+              handleInputTypeChange('textInput')
             }}
           >
             Delimeted
