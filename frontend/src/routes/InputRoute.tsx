@@ -84,11 +84,10 @@ const InputRoute = (
           <li
             className={state.inputType === 'listInput' ? 'underline' : ''}
             onClick={() => {
-              if (state.inputType === 'listInput') {
-                return;
+              if (state.inputType !== 'listInput') {
+                handleInputTypeChange('listInput')
               }
 
-              handleInputTypeChange('listInput')
             }}
           >
             Listed
@@ -96,11 +95,10 @@ const InputRoute = (
           <li
             className={state.inputType === 'basicInput' ? 'underline' : ''}
             onClick={() => {
-              if (state.inputType === 'basicInput') {
-                return;
+              if (state.inputType !== 'basicInput') {
+                handleInputTypeChange('basicInput')
               }
 
-              handleInputTypeChange('basicInput')
             }}
           >
             JSON
@@ -108,11 +106,10 @@ const InputRoute = (
           <li
             className={state.inputType === 'textInput' ? 'underline' : ''}
             onClick={() => {
-              if (state.inputType === 'textInput') {
-                return;
+              if (state.inputType !== 'textInput') {
+                handleInputTypeChange('textInput')
               }
 
-              handleInputTypeChange('textInput')
             }}
           >
             Delimeted
