@@ -1,3 +1,4 @@
+import JSZip from "jszip";
 const QRCode = require('qrcode')
 
 
@@ -38,4 +39,30 @@ export const generateQRCodeFile = (input: string) => {
     link.download = 'qrcode';  // Set the file name and extension
     link.click();  // Trigger the download
   })
+}
+
+export const generateQRCodeZip = (inputArray: string[]) => {
+  const zip = new JSZip();
+
+  for (let item of inputArray) {
+    QRCode.toString(item, { type: 'svg' }, (error: any, svg: string) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('QR code SVG generate')
+      }
+
+      const blob = new Blob([svg], { type: 'image/svg+xml' });
+      zip.file(`${item}.svg`, blob);
+    })
+  }
+
+  zip.generateAsync({ type: 'blob' })
+    .then((zip) => {
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(zip);
+      link.download = 'qrcode.zip';
+      link.click();
+    })
+
 }
