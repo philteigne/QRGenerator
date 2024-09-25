@@ -454,10 +454,15 @@ canvas.QRCanvas {
 
   .QRContainer {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
     align-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .QRContainer::after {
+    content: "";
+    flex: 0 0 33.33%;
   }
 
   .QRDisplay {
