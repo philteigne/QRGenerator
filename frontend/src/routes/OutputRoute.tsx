@@ -5,6 +5,8 @@ import { stateObject } from '../interfaces/StateInterfaces'
 
 import QRDisplay from '../components/QRDisplay';
 
+import { generateQRCodeZip } from '../helpers/generateQR'
+
 const OutputRoute = (
   {state, dispatch}:
   {state: stateObject, dispatch: Function}
@@ -15,7 +17,7 @@ const OutputRoute = (
         <h2>Your QR codes are ready.</h2>
         <div className='outputControl'>
           <a className='aButton inverse' onClick={() => dispatch({type: "SET_APP_VIEW", payload: 'input'})}><FontAwesomeIcon icon={faPenToSquare} /></a>
-          <a className='aButton'><FontAwesomeIcon icon={faDownload} /></a>
+          <a className='aButton' onClick={() => generateQRCodeZip(state.arrayInput)}><FontAwesomeIcon icon={faDownload} /></a>
         </div>
       </div>
 
