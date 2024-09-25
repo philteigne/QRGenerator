@@ -156,6 +156,28 @@ button.inverse {
   cursor: pointer;
 }
 
+.notification {
+  display: flex;
+  justify-content: center;
+
+  background-color: #07937E;
+
+  padding: 6px;
+  border-radius: 12px;
+
+  min-height: 12px;
+  min-width: 12px;
+
+  position: fixed;
+
+  font-family: 'RedHatDisplay', sans-serif;
+  font-weight: bold;
+  font-size: 11pt;
+  color: white;
+
+  transform: translate(35%, -60%);
+}
+
 a.inverse {
   border: 1px #B0413E solid;
   color: #B0413E;
