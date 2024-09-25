@@ -24,9 +24,9 @@ const QRDisplay = ({ input }: { input: string }) => {
           {input.length <= 10 ? input : input.slice(0, 9) + '...'}
         </h3>
         <div className='QRControl'>
-          <a className='aButton inverse' onClick={() => generateQRCodeFile(input)}>
+          {/* <a className='aButton inverse' onClick={() => generateQRCodeFile(input)}>
             <FontAwesomeIcon icon={faShareNodes} />
-          </a>
+          </a> */}
           <a className='aButton inverse' onClick={() => generateQRCodeFile(input)}>
             <FontAwesomeIcon icon={faDownload} />
           </a>
