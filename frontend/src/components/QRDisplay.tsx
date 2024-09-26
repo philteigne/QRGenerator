@@ -17,7 +17,7 @@ const QRDisplay = ({ input }: { input: string }) => {
   }, []);
 
   return (
-    <div className='QRDisplay'>
+    <div className='QRDisplay' data-testid={'QRDisplayItem'}>
       <canvas className='QRCanvas' ref={QRCanvasRef}></canvas>
       <div className='QRInfo'>
         <h3>

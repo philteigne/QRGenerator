@@ -89,6 +89,7 @@ const InputRoute = (
               }
 
             }}
+            data-testid={'listInputSelector'}
           >
             Listed
           </li>
@@ -100,6 +101,7 @@ const InputRoute = (
               }
 
             }}
+            data-testid={'basicInputSelector'}
           >
             JSON
           </li>
@@ -111,6 +113,7 @@ const InputRoute = (
               }
 
             }}
+            data-testid={'textInputSelector'}
           >
             Delimeted
           </li>
@@ -126,16 +129,18 @@ const InputRoute = (
                   <input
                     value={item}
                     onChange={(e) => {handleListInputChange(index, e.target.value)}}
+                    data-testid={'listInputField'}
                   ></input>
                   <FontAwesomeIcon
                     className='FontAwesomeIcon'
                     icon={faXmark}
                     onClick={() => {handleListInputDelete(index)}}
+                    data-testid={'listInputDelete'}
                   />
                 </div>
               )
             })}
-            <div className='inputContainer' onClick={() => handleListInputAdd()}>
+            <div className='inputContainer' onClick={() => handleListInputAdd()} data-testid={'listInputAdd'}>
               <a className='aButton alt'>
                 <FontAwesomeIcon className='FontAwesomeIcon' icon={faPlus} />
               </a>
@@ -167,6 +172,7 @@ const InputRoute = (
               dispatch({type: "SET_ERROR_MSG", payload: ''})
               dispatch({type: "SET_APP_VIEW", payload: 'input'})
             }}
+            data-testid={'inputReset'}
           >
             Reset
           </button>
@@ -175,12 +181,13 @@ const InputRoute = (
               dispatch({type: "SET_ERROR_MSG", payload: ''})
               handleGeneration(state.textInput, state.inputType);
             }}
+            data-testid={'inputGenerate'}
           >
             Generate
           </button>
         </div>
         {state.errorMsg &&
-        <div className='errorDisplay'>
+        <div className='errorDisplay' data-testid={'errorMsg'}>
           <h2 className='error'>{state.errorMsg}</h2>
         </div>}
       </div>

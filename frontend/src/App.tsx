@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1 id='title'>BulQR</h1>
+        <h1 id='title' data-testid={'titleElement'} >BulQR</h1>
       </header>
 
       {state.appView === 'input' && 
