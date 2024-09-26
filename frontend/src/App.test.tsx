@@ -2,6 +2,17 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
 
+const loadOutputView = () => {
+  render(<App />)
+  const inputType = screen.getByTestId('basicInputSelector');
+  const generateButton = screen.getByTestId('inputGenerate');
+  fireEvent.click(inputType);
+  const inputField = screen.getByTestId('basicInputTextarea');
+
+  fireEvent.change(inputField, {target: {value: '["I want a QR Code NOW!"]'}})
+  fireEvent.click(generateButton)
+}
+
 // App renders
 describe('App', () => {
   test('Renders app title', () => {
@@ -214,6 +225,28 @@ describe('Input', () => {
       const errorMsg = screen.queryByTestId('errorMsg');
    
       expect(errorMsg).toBeInTheDocument();
+    })
+  })
+  describe('Output', () => {
+    beforeEach(() => {
+      loadOutputView();
+    })
+    test('Clicking edit renders input view', () => {
+      const editButton = screen.getByTestId('editButton');
+      
+      fireEvent.click(editButton);
+      const inputType = screen.getByTestId('textInputSelector');
+
+      expect(inputType).toBeInTheDocument();
+    })
+    test('QR Codes render with image, title, and download button', () => {
+      const QRCanvas = screen.getByTestId('QRCanvas')
+      const QRTitle = screen.getByTestId('QRTitle')
+      const QRDownload = screen.getByTestId('QRDownload')
+
+      expect(QRCanvas).toBeInTheDocument();
+      expect(QRTitle).toBeInTheDocument();
+      expect(QRDownload).toBeInTheDocument();
     })
   })
 });
