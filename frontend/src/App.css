@@ -462,7 +462,6 @@ canvas.QRCanvas {
 
   .QRContainer::after {
     content: "";
-    flex: 0 0 33.33%;
   }
 
   .QRDisplay {
