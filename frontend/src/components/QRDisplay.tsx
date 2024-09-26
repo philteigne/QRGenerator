@@ -18,16 +18,16 @@ const QRDisplay = ({ input }: { input: string }) => {
 
   return (
     <div className='QRDisplay' data-testid={'QRDisplayItem'}>
-      <canvas className='QRCanvas' ref={QRCanvasRef}></canvas>
+      <canvas className='QRCanvas' ref={QRCanvasRef} data-testid={'QRCanvas'}></canvas>
       <div className='QRInfo'>
-        <h3>
+        <h3 data-testid={'QRTitle'}>
           {input.length <= 10 ? input : input.slice(0, 9) + '...'}
         </h3>
         <div className='QRControl'>
           {/* <a className='aButton inverse' onClick={() => generateQRCodeFile(input)}>
             <FontAwesomeIcon icon={faShareNodes} />
           </a> */}
-          <a className='aButton inverse' onClick={() => generateQRCodeFile(input)}>
+          <a className='aButton inverse' onClick={() => generateQRCodeFile(input)} data-testid={'QRDownload'}>
             <FontAwesomeIcon icon={faDownload} />
           </a>
         </div>
