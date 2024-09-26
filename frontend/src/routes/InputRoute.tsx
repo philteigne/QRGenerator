@@ -122,7 +122,7 @@ const InputRoute = (
           <div className='listInputContainer'>
             {state.arrayInput.map((item, index) => {
               return (
-                <div className='inputContainer'>
+                <div className='inputContainer' key={index}>
                   <input
                     value={item}
                     onChange={(e) => {handleListInputChange(index, e.target.value)}}
@@ -172,10 +172,8 @@ const InputRoute = (
           </button>
           <button
             onClick={() => {
-              console.log(state.textInput)
               dispatch({type: "SET_ERROR_MSG", payload: ''})
               handleGeneration(state.textInput, state.inputType);
-              console.log(state.errorMsg)
             }}
           >
             Generate
