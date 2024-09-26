@@ -153,6 +153,7 @@ const InputRoute = (
             value={state.textInput}
             placeholder='Enter your array of strings. eg. ["item 1", "item 2", "item 3"]'
             className='textField'
+            data-testid={'basicInputTextarea'}
           ></textarea>}
         {state.inputType === 'textInput' &&
           <textarea
@@ -160,6 +161,7 @@ const InputRoute = (
             value={state.textInput}
             placeholder='Enter your list of strings delimited with semi-colons. eg. item 1; item 2; item 3'
             className='textField'
+            data-testid={'textInputTextarea'}
           ></textarea>}
         
         <div className='formControl'>
