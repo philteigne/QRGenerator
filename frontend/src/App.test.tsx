@@ -152,7 +152,68 @@ describe('Input', () => {
     test('Clicking Delimeted input type renders Delimeted textarea', () => {
       render(<App />);
       const inputType = screen.getByTestId('textInputSelector');
-      expect(inputType).toBeInTheDocument();
+
+      fireEvent.click(inputType)
+      const inputField = screen.getByTestId('textInputTextarea')
+
+      expect(inputField).toBeInTheDocument();
+    })
+    test('Typing in textarea changes value', () => {
+      render(<App />);
+      const inputType = screen.getByTestId('textInputSelector');
+
+      fireEvent.click(inputType)
+      const inputField = screen.getByTestId('textInputTextarea')
+
+      fireEvent.change(inputField, {target: {value: 'I want a QR Code NOW!'}});
+   
+      expect(inputField).toHaveValue('I want a QR Code NOW!')
+    })
+    test('Submitting with delimeted value generates multiple QR Codes', () => {
+      render(<App />);
+      const inputType = screen.getByTestId('textInputSelector');
+      const generateButton = screen.getByTestId('inputGenerate');
+
+      fireEvent.click(inputType);
+      const inputField = screen.getByTestId('textInputTextarea');
+
+      fireEvent.change(inputField, {target: {value: 'I want a QR Code NOW!; Please'}});
+      fireEvent.click(generateButton);
+
+      const QRDisplayItems = screen.getAllByTestId('QRDisplayItem');
+   
+      expect(QRDisplayItems).toHaveLength(2);
+    })
+    test('Submitting with only delimeters renders error', () => {
+      render(<App />);
+      const inputType = screen.getByTestId('textInputSelector');
+      const generateButton = screen.getByTestId('inputGenerate');
+
+      fireEvent.click(inputType);
+      const inputField = screen.getByTestId('textInputTextarea');
+
+      fireEvent.change(inputField, {target: {value: ';;;'}});
+      fireEvent.click(generateButton);
+
+      const errorMsg = screen.queryByTestId('errorMsg');
+   
+      expect(errorMsg).toBeInTheDocument();
+    })
+    test('Submitting with more than 2331 characters renders error', () => {
+      render(<App />);
+      const inputType = screen.getByTestId('textInputSelector');
+      const generateButton = screen.getByTestId('inputGenerate');
+      const testString = "a".repeat(2332);
+
+      fireEvent.click(inputType);
+      const inputField = screen.getByTestId('textInputTextarea');
+
+      fireEvent.change(inputField, {target: {value: testString}});
+      fireEvent.click(generateButton);
+
+      const errorMsg = screen.queryByTestId('errorMsg');
+   
+      expect(errorMsg).toBeInTheDocument();
     })
   })
 });
