@@ -17,10 +17,10 @@ const OutputRoute = (
         <h2>Your QR codes are ready.</h2>
         <div className='outputControl'>
           <a className='aButton inverse' onClick={() => dispatch({type: "SET_APP_VIEW", payload: 'input'})}><FontAwesomeIcon icon={faPenToSquare} /></a>
-          <a className='aButton' onClick={() => generateQRCodeZip(state.arrayInput)}>
+          <div>
             <a className='notification'>{state.arrayInput.length > 10 ? '10+' : state.arrayInput.length}</a>
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
+            <a className='aButton' onClick={() => generateQRCodeZip(state.arrayInput)}><FontAwesomeIcon icon={faDownload} /></a>
+          </div>
         </div>
       </div>
 
