@@ -13,24 +13,12 @@ describe('App', () => {
 
 // Input Tests
 describe('Input', () => {
-  test('Renders Listed input type', () => {
-    render(<App />);
-    const inputType = screen.getByTestId('listInputSelector');
-    expect(inputType).toBeInTheDocument();
-  })
-  test('Clicking JSON input type renders JSON textarea', () => {
-    render(<App />);
-    const inputType = screen.getByTestId('basicInputSelector');
-    expect(inputType).toBeInTheDocument();
-  })
-  test('Clicking Delimeted input type renders Delimeted textarea', () => {
-    render(<App />);
-    const inputType = screen.getByTestId('textInputSelector');
-    expect(inputType).toBeInTheDocument();
-  })
-
-  // List Input Tests
   describe('List Input', () => {
+    test('Renders Listed input type', () => {
+      render(<App />);
+      const inputType = screen.getByTestId('listInputSelector');
+      expect(inputType).toBeInTheDocument();
+    })
     test('Clicking Listed input type does not delete input information', () => {
       render(<App />);
       const inputField = screen.getByTestId('listInputField');
@@ -100,6 +88,71 @@ describe('Input', () => {
       expect(inputFields).toHaveLength(1);
       expect(inputField).toHaveValue('')
     })
-    
+  })
+  describe('Basic Input', () => {
+    test('Clicking JSON input type renders JSON textarea', () => {
+      render(<App />)
+      const inputType = screen.getByTestId('basicInputSelector');
+      fireEvent.click(inputType);
+      const inputField = screen.queryByTestId('basicInputTextarea');
+
+      expect(inputField).toBeInTheDocument();
+    })
+    test('Typing in textarea changes value', () => {
+      render(<App />)
+      const inputType = screen.getByTestId('basicInputSelector');
+      fireEvent.click(inputType);
+      const inputField = screen.getByTestId('basicInputTextarea');
+
+      fireEvent.change(inputField, {target: {value: 'I want a QR Code NOW!'}})
+
+      expect(inputField).toHaveValue('I want a QR Code NOW!');
+    })
+    test('Submitting valid JSON generates output page', () => {
+      render(<App />)
+      const inputType = screen.getByTestId('basicInputSelector');
+      const generateButton = screen.getByTestId('inputGenerate');
+      fireEvent.click(inputType);
+      const inputField = screen.getByTestId('basicInputTextarea');
+
+      fireEvent.change(inputField, {target: {value: '["I want a QR Code NOW!"]'}})
+      fireEvent.click(generateButton)
+
+      const QRDisplay = screen.getByTestId('QRDisplayItem');
+      expect(QRDisplay).toBeInTheDocument();
+    })
+    test('Submitting invalid JSON renders error', () => {
+      render(<App />)
+      const inputType = screen.getByTestId('basicInputSelector');
+      const generateButton = screen.getByTestId('inputGenerate');
+      fireEvent.click(inputType);
+      const inputField = screen.getByTestId('basicInputTextarea');
+
+      fireEvent.change(inputField, {target: {value: "['I want a QR Code NOW!']"}})
+      fireEvent.click(generateButton)
+      
+      const errorMsg = screen.queryByTestId('errorMsg')
+      expect(errorMsg).toBeInTheDocument();
+    })
+    test('Reset clears textarea', () => {
+      render(<App />)
+      const inputType = screen.getByTestId('basicInputSelector');
+      const resetButton = screen.getByTestId('inputReset');
+      fireEvent.click(inputType);
+      const inputField = screen.getByTestId('basicInputTextarea');
+
+      fireEvent.change(inputField, {target: {value: 'I want a QR Code NOW!'}});
+      
+      fireEvent.click(resetButton);
+
+      expect(inputField).toHaveValue('')
+    })
+  })
+  describe('Delimeted Input', () => {
+    test('Clicking Delimeted input type renders Delimeted textarea', () => {
+      render(<App />);
+      const inputType = screen.getByTestId('textInputSelector');
+      expect(inputType).toBeInTheDocument();
+    })
   })
 });
