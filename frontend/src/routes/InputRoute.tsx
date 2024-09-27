@@ -1,13 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faXmark, faGear } from '@fortawesome/free-solid-svg-icons'
 
 import { stateObject } from '../interfaces/StateInterfaces'
+import QRSettingsModal from '../components/QRSettingsModal'
 
 const InputRoute = (
   {state, dispatch}:
   {state: stateObject, dispatch: Function}
 ) => {
-
+  console.log(state.QRSettingsModal)
   const handleListInputChange = (index: number, newValue: string) => {
     const updatedItems = [...state.arrayInput];
 
@@ -80,8 +81,8 @@ const InputRoute = (
       <div className='output'>
         <h2>Add items to get started.</h2>
       </div>
-
       <div className='inputTypeSelection'>
+
         <ul>
           <li
             className={state.inputType === 'listInput' ? 'underline' : ''}
@@ -120,6 +121,12 @@ const InputRoute = (
             Delimeted
           </li>
         </ul>
+        <button
+          className='aButton'
+          onClick={() => dispatch({type: "TOGGLE_QRSETTINGS_MODAL", payload: true})}
+        >
+          <FontAwesomeIcon className='FontAwesomeIcon' icon={faGear} />
+        </button>
       </div>
 
       <div className='input'>
@@ -195,6 +202,9 @@ const InputRoute = (
           <h2 className='error'>{state.errorMsg}</h2>
         </div>}
       </div>
+      <>
+       {state.QRSettingsModal && <QRSettingsModal state={state} dispatch={dispatch}/>}
+      </>
     </>
   )
 }
