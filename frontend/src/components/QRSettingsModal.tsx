@@ -1,6 +1,8 @@
 import {useState} from "react"
 
 import { stateObject, QRSettingsObject } from "../interfaces/StateInterfaces";
+import { faArrowsRotate, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const QRSettingsModal = (
   {state, dispatch}:
@@ -21,67 +23,105 @@ const QRSettingsModal = (
   };
 
   return(
-    <div className="modal">
+    <div className="QRSettingsModal">
+      <h2>QR Generation Settings</h2>
+      <button className='aButton-alt QRSettingsCloseButton'
+        onClick={() => handleClose()}
+      >
+        <FontAwesomeIcon icon={faXmark} />
+      </button>
       <form>
         <label>Error Correction Level:</label>
-        <select
-          onChange={e => setQRSettingsUpdate({...QRSettingsUpdate, errorCorrection: e.target.value as 'L' | 'M' | 'Q' | 'H'})}
-        >
-          <option value={'L'}>Low ~7%</option>
-          <option value={'M'}>Medium ~15%</option>
-          <option value={'Q'}>Quartile ~25%</option>
-          <option value={'H'}>High ~30%</option>
-        </select>
-        <button
-          onClick={() => setQRSettingsUpdate({...QRSettingsUpdate, errorCorrection: QRSettingsDefault.errorCorrection})}
-        ></button>
+        <div className="QRSettingsInputContainer">
+          <select
+            className="QRSettingsInput"
+            value={QRSettingsUpdate.errorCorrection}
+            onChange={e => setQRSettingsUpdate({...QRSettingsUpdate, errorCorrection: e.target.value as 'L' | 'M' | 'Q' | 'H'})}
+          >
+            <option value={'L'}>Low ~7%</option>
+            <option value={'M'}>Medium ~15%</option>
+            <option value={'Q'}>Quartile ~25%</option>
+            <option value={'H'}>High ~30%</option>
+          </select>
+          <button
+            type="button"
+            onClick={() => setQRSettingsUpdate({...QRSettingsUpdate, errorCorrection: state.QRSettings.errorCorrection})}
+          >
+            <FontAwesomeIcon icon={faArrowsRotate} />
+          </button>
+        </div>
 
-        <label>width (px):</label>
-        <input
-          type="number"
-          onChange={e => setQRSettingsUpdate({...QRSettingsUpdate, width: parseFloat(e.target.value)})}
-        />
-        <button
-          onClick={() => setQRSettingsUpdate({...QRSettingsUpdate, width: QRSettingsDefault.width})}
-        ></button>
+        <label>Width (px):</label>
+        <div className="QRSettingsInputContainer">
+          <input
+            className="QRSettingsInput"
+            type="number"
+            value={Number(QRSettingsUpdate.width)}
+            placeholder={String(state.QRSettings.width)}
+            onChange={e => setQRSettingsUpdate({...QRSettingsUpdate, width: parseFloat(e.target.value)})}
+          />
+          <button
+            type="button"
+            onClick={() => setQRSettingsUpdate({...QRSettingsUpdate, width: state.QRSettings.width})}
+          >
+            <FontAwesomeIcon icon={faArrowsRotate} />
+          </button>
+        </div>
 
-        <label>height (px):</label>
-        <input
-          type="number"
-          onChange={e => setQRSettingsUpdate({...QRSettingsUpdate, height: parseFloat(e.target.value)})}
-        />
-        <button
-          onClick={() => setQRSettingsUpdate({...QRSettingsUpdate, height: QRSettingsDefault.height})}
-        ></button>
+        <label>Height (px):</label>
+        <div className="QRSettingsInputContainer">
+          <input
+            className="QRSettingsInput"
+            type="number"
+            value={Number(QRSettingsUpdate.height)}
+            placeholder={String(state.QRSettings.height)}
+            onChange={e => setQRSettingsUpdate({...QRSettingsUpdate, height: parseFloat(e.target.value)})}
+          />
+          <button
+            type="button"
+            onClick={() => setQRSettingsUpdate({...QRSettingsUpdate, height: state.QRSettings.height})}
+          >
+            <FontAwesomeIcon icon={faArrowsRotate} />
+          </button>
+        </div>
 
-        <label>margin (px):</label>
-        <input
-          type="number"
-          onChange={e => setQRSettingsUpdate({...QRSettingsUpdate, height: parseFloat(e.target.value)})}
-        />
-        <button
-          onClick={() => setQRSettingsUpdate({...QRSettingsUpdate, margin: QRSettingsDefault.margin})}
-        ></button>
+        <label>Margin (px):</label>
+        <div className="QRSettingsInputContainer">
+          <input
+            className="QRSettingsInput"
+            type="number"
+            value={Number(QRSettingsUpdate.margin)}
+            placeholder={String(state.QRSettings.margin)}
+            onChange={e => setQRSettingsUpdate({...QRSettingsUpdate, margin: parseFloat(e.target.value)})}
+          />
+          <button
+            type="button"
+            onClick={() => setQRSettingsUpdate({...QRSettingsUpdate, margin: state.QRSettings.margin})}
+          >
+            <FontAwesomeIcon icon={faArrowsRotate} />
+          </button>
+        </div>
       </form>
 
-      <button
-        onClick={() => {
-          setQRSettingsUpdate({...state.QRSettings});
-          handleClose();
-          console.log(state.QRSettingsModal)
-        }}
-      >
-        Cancel
-      </button>
-      <button
-        onClick={() => {
-          dispatch({type: "SET_QRSETTINGS", payload: QRSettingsUpdate});
-          handleClose();
-          console.log(state.QRSettingsModal)
-        }}
-      >
-        Save
-      </button>
+      <div className="QRFormControl">
+        <button
+          onClick={() => {
+            setQRSettingsUpdate({...QRSettingsDefault});
+          }}
+          className="inverse"
+        >
+          Reset
+        </button>
+        <button
+          onClick={() => {
+            dispatch({type: "SET_QRSETTINGS", payload: QRSettingsUpdate});
+            handleClose();
+            console.log(state.QRSettingsModal)
+          }}
+        >
+          Save
+        </button>
+      </div>
     </div>
   )
 }
