@@ -249,6 +249,26 @@ textarea:focus {
   outline: 2px solid #B0413E;
 }
 
+label {
+  font-family: 'RedHatText', sans-serif;
+  font-weight: normal;
+  font-size: 12pt;
+  color: #242423;
+  margin: 12pt 0 4pt 0;
+}
+
+select {
+  font-family: 'RedHatText', sans-serif;
+  font-weight: normal;
+  font-size: 12pt;
+  color: #242423;
+
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+
 .App {
   height: 100vh;
   width: 85%;
@@ -387,7 +407,7 @@ header {
 /* QR CODE DISPLAY */
 .QRContainer {
   width: 100%;
-  display: flex;
+  display: none;
   flex-direction: column;
 
   overflow-y: scroll;
@@ -444,6 +464,60 @@ canvas.QRCanvas {
 
 .QRControl button {
   margin-left: 15px;
+}
+
+/* QR MODAL SETTINGS */
+.QRSettingsModal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: white;
+
+  box-sizing: border-box;
+  border-radius: 20px;
+  padding: 50px;
+
+  width: 80%;
+
+  box-shadow: 0 0 0 50vmax rgba(0,0,0,.5);
+}
+
+.QRSettingsModal form {
+  display: flex;
+  flex-direction: column;
+}
+
+.QRSettingsInputContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.QRSettingsInput {
+  width: calc(100% - 50px)
+}
+
+button.QRSettingsCloseButton {
+  position: fixed;
+  right: 3%;
+  top: 3%;
+
+  background-color: #B0413E;
+}
+
+.QRFormControl {
+  margin-top: 24px;
+
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.QRFormControl button {
+  margin-left: 12px;
 }
 
 @media only screen and (min-width: 768px) {
