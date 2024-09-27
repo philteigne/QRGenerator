@@ -2,14 +2,15 @@ import { useEffect, useRef } from 'react';
 import { generateQRCodeWeb } from '../helpers/generateQR';
 import { generateQRCodeFile } from '../helpers/generateQR';
 
+import { stateObject } from '../interfaces/StateInterfaces';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDownload } from '@fortawesome/free-solid-svg-icons'
-import useApplicationData from '../hooks/stateReducer';
 
-const QRDisplay = ({ input }: { input: string }) => {
+const QRDisplay = ({ input, state }: { input: string, state:stateObject }) => {
 
-  const {state} = useApplicationData();
   const {errorCorrection, width, height, margin} = state.QRSettings;
+  console.log(state.QRSettings)
 
   const QRCanvasRef = useRef<HTMLCanvasElement | null>(null); // Reference to the canvas
 
