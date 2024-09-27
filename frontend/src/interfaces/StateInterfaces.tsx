@@ -11,7 +11,7 @@ interface stateObject {
   inputType:'listInput' | 'basicInput' | 'textInput',
   appView:'input' | 'output',
   errorMsg:string,
-  QRSettingsModal:Boolean,
+  QRSettingsModal:boolean,
   QRSettings:QRSettingsObject
 }
 
