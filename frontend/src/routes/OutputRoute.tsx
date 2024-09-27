@@ -35,7 +35,7 @@ const OutputRoute = (
           state.arrayInput.map((item: string, index) => {
             // Don't render empty strings
             if (item.length === 0) {
-              return;
+              return null;
             }
             return (
               <QRDisplay key={index} input={item} />
