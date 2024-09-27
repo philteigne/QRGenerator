@@ -26,11 +26,11 @@ export const generateQRCodeWeb = (
 export const generateQRCodeFile = (
   input: string,
   errorCorrectionInput: 'L' | 'M' | 'Q' | 'H',
-  widthInput:Number,
-  heightInput:Number,
-  marginInput:Number
+  widthInput:number,
+  heightInput:number,
+  marginInput:number
 ) => {
-  QRCode.toString(input, { type: 'svg', errorCorrectionLevel: errorCorrectionInput, width: widthInput, height: heightInput, margin: marginInput }, (error: any, svg: string) => {
+  QRCode.toString(input, { type: 'svg', errorCorrectionLevel: errorCorrectionInput, width: widthInput + marginInput, height: heightInput + marginInput, margin: marginInput }, (error: any, svg: string) => {
     if (error) {
       console.log(error);
     } else {
