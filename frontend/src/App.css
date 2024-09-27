@@ -525,6 +525,7 @@ button.QRSettingsCloseButton {
 }
 
 .labelError {
+  margin-top: 3px;
   color: #B0413E;
 }
 
