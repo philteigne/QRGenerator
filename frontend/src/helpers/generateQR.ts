@@ -12,9 +12,8 @@ export const generateQRCodeWeb = (
   }
 
   const canvasWidth = QRCanvas.current.clientWidth;
-  const canvasHeight = QRCanvas.current.clientHeight;
 
-  QRCode.toCanvas(QRCanvas.current, input, {width: canvasWidth, height: canvasHeight, errorCorrectionLevel: errorCorrectionInput}, (error: any) => {
+  QRCode.toCanvas(QRCanvas.current, input, {width: canvasWidth, errorCorrectionLevel: errorCorrectionInput}, (error: any) => {
     if (error) {
       console.log(error)
     } else {
@@ -27,10 +26,9 @@ export const generateQRCodeFile = (
   input: string,
   errorCorrectionInput: 'L' | 'M' | 'Q' | 'H',
   widthInput:number,
-  heightInput:number,
   marginInput:number
 ) => {
-  QRCode.toString(input, { type: 'svg', errorCorrectionLevel: errorCorrectionInput, width: widthInput + marginInput, height: heightInput + marginInput, margin: marginInput }, (error: any, svg: string) => {
+  QRCode.toString(input, { type: 'svg', errorCorrectionLevel: errorCorrectionInput, width: widthInput + marginInput, margin: marginInput }, (error: any, svg: string) => {
     if (error) {
       console.log(error);
     } else {

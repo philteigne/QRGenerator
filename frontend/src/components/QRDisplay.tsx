@@ -9,7 +9,7 @@ import { faDownload } from '@fortawesome/free-solid-svg-icons'
 
 const QRDisplay = ({ input, state }: { input: string, state:stateObject }) => {
 
-  const {errorCorrection, width, height, margin} = state.QRSettings;
+  const {errorCorrection, width, margin} = state.QRSettings;
   console.log(state.QRSettings)
 
   const QRCanvasRef = useRef<HTMLCanvasElement | null>(null); // Reference to the canvas
@@ -29,7 +29,7 @@ const QRDisplay = ({ input, state }: { input: string, state:stateObject }) => {
           {input.length <= 10 ? input : input.slice(0, 9) + '...'}
         </h3>
         <div className='QRControl'>
-          <button className='aButton-inverse' onClick={() => generateQRCodeFile(input, errorCorrection, width, height, margin)} data-testid={'QRDownload'}>
+          <button className='aButton-inverse' onClick={() => generateQRCodeFile(input, errorCorrection, width, margin)} data-testid={'QRDownload'}>
             <FontAwesomeIcon icon={faDownload} />
           </button>
         </div>

@@ -1,6 +1,5 @@
 interface QRSettingsObject {
   errorCorrection:'L' | 'M' | 'Q' | 'H',
-  height:number,
   width:number,
   margin:number,
 }
