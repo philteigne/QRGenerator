@@ -167,12 +167,11 @@ const QRSettingsModal = (
         <button
           onClick={() => {
             // Pre-Check
-            if (QRSettingsHeight !== 'QRSettingsInput' && QRSettingsWidth !== 'QRSettingsInput' && QRSettingsMargin !== 'QRSettingsInput') {
-              return;
+            if (QRSettingsHeight === 'QRSettingsInput' && QRSettingsWidth === 'QRSettingsInput' && QRSettingsMargin === 'QRSettingsInput') {
+              dispatch({type: "SET_QRSETTINGS", payload: QRSettingsUpdate});
+              handleClose();
             }
             
-            dispatch({type: "SET_QRSETTINGS", payload: QRSettingsUpdate});
-            handleClose();
           }}
         >
           Save
