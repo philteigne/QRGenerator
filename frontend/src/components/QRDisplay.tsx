@@ -4,15 +4,19 @@ import { generateQRCodeFile } from '../helpers/generateQR';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDownload } from '@fortawesome/free-solid-svg-icons'
+import useApplicationData from '../hooks/stateReducer';
 
 const QRDisplay = ({ input }: { input: string }) => {
+
+  const {state} = useApplicationData();
+  const {errorCorrection, width, height, margin} = state.QRSettings;
 
   const QRCanvasRef = useRef<HTMLCanvasElement | null>(null); // Reference to the canvas
 
   // useEffect to wait for DOM
   useEffect(() => {
     if (QRCanvasRef.current) {
-      generateQRCodeWeb(QRCanvasRef, input);
+      generateQRCodeWeb(QRCanvasRef, input, errorCorrection);
     }
   });
 
@@ -24,7 +28,7 @@ const QRDisplay = ({ input }: { input: string }) => {
           {input.length <= 10 ? input : input.slice(0, 9) + '...'}
         </h3>
         <div className='QRControl'>
-          <button className='aButton-inverse' onClick={() => generateQRCodeFile(input)} data-testid={'QRDownload'}>
+          <button className='aButton-inverse' onClick={() => generateQRCodeFile(input, errorCorrection, width, height, margin)} data-testid={'QRDownload'}>
             <FontAwesomeIcon icon={faDownload} />
           </button>
         </div>
