@@ -407,7 +407,6 @@ header {
 /* QR CODE DISPLAY */
 .QRContainer {
   width: 100%;
-  display: none;
   flex-direction: column;
 
   overflow-y: scroll;
@@ -418,7 +417,7 @@ header {
 }
 
 .QRDisplay {
-  width: 90%;
+  width: 100%;
 
   border-radius: 10px;
   background-color: #B0413E;
