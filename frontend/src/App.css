@@ -162,11 +162,8 @@ button.inverse {
 
   background-color: #07937E;
 
-  padding: 6px;
   border-radius: 12px;
-
-  min-height: 12px;
-  min-width: 12px;
+  padding: 4pt 6pt;
 
   position: fixed;
 
@@ -175,7 +172,7 @@ button.inverse {
   font-size: 11pt;
   color: white;
 
-  transform: translate(100%, -50%);
+  transform: translate(38px, -12px)
 }
 
 .aButton-inverse {
@@ -382,7 +379,7 @@ header {
   flex-direction: row;
 }
 
-.output .outputControl a {
+.output .outputControl button {
   margin-left: 15px;
 }
 
@@ -444,7 +441,7 @@ canvas.QRCanvas {
   flex-direction: row;
 }
 
-.QRControl a {
+.QRControl button {
   margin-left: 15px;
 }
 

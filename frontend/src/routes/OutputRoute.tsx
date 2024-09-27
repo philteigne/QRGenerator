@@ -24,7 +24,7 @@ const OutputRoute = (
             <FontAwesomeIcon icon={faPenToSquare} />
           </button>
           <div>
-            <button className='notification'>{state.arrayInput.length > 10 ? '10+' : state.arrayInput.length}</button>
+            <p className='notification'>{state.arrayInput.length > 10 ? '10+' : state.arrayInput.length}</p>
             <button className='aButton' onClick={() => generateQRCodeZip(state.arrayInput)}><FontAwesomeIcon icon={faDownload} /></button>
           </div>
         </div>
