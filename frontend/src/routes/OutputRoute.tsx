@@ -38,7 +38,7 @@ const OutputRoute = (
               return null;
             }
             return (
-              <QRDisplay key={index} input={item} />
+              <QRDisplay key={index} state={state} input={item} />
             );
           })
         }
