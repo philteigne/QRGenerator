@@ -38,16 +38,18 @@ const InputRoute = (
         error = ('Input should include at least one item')
       }
 
+      dispatch({type: "SET_ARRAY_INPUT", payload: state.arrayInput.filter((item: string) => item.length > 0)})
+
     } else if (inputType === 'basicInput') {
 
       try {
-        dispatch({type: "SET_ARRAY_INPUT", payload: JSON.parse(input)});
+        dispatch({type: "SET_ARRAY_INPUT", payload: JSON.parse(input).filter((item: string) => item.length > 0)});
       } catch(e) {
         error = ('Input is not valid JSON')
       }
 
     } else if (inputType === 'textInput') {      
-      const newInput = input.split(';').map(item => item.trim()).filter((item) => item.length > 0)
+      const newInput = input.split(';').map(item => item.trim()).filter((item: string) => item.length > 0)
 
       if (!newInput.find(item => item.length > 0)) {
         error = ('Input should include at least one character')
