@@ -3,7 +3,7 @@ import { generateQRCodeWeb } from '../helpers/generateQR';
 import { generateQRCodeFile } from '../helpers/generateQR';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShareNodes, faDownload } from '@fortawesome/free-solid-svg-icons'
+import { faDownload } from '@fortawesome/free-solid-svg-icons'
 
 const QRDisplay = ({ input }: { input: string }) => {
 
@@ -14,7 +14,7 @@ const QRDisplay = ({ input }: { input: string }) => {
     if (QRCanvasRef.current) {
       generateQRCodeWeb(QRCanvasRef, input);
     }
-  }, []);
+  });
 
   return (
     <div className='QRDisplay' data-testid={'QRDisplayItem'}>
@@ -24,12 +24,9 @@ const QRDisplay = ({ input }: { input: string }) => {
           {input.length <= 10 ? input : input.slice(0, 9) + '...'}
         </h3>
         <div className='QRControl'>
-          {/* <a className='aButton inverse' onClick={() => generateQRCodeFile(input)}>
-            <FontAwesomeIcon icon={faShareNodes} />
-          </a> */}
-          <a className='aButton inverse' onClick={() => generateQRCodeFile(input)} data-testid={'QRDownload'}>
+          <button className='aButton-inverse' onClick={() => generateQRCodeFile(input)} data-testid={'QRDownload'}>
             <FontAwesomeIcon icon={faDownload} />
-          </a>
+          </button>
         </div>
       </div>
     </div>

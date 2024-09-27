@@ -143,9 +143,9 @@ const InputRoute = (
               )
             })}
             <div className='inputContainer' onClick={() => handleListInputAdd()} data-testid={'listInputAdd'}>
-              <a className='aButton alt'>
+              <button className='aButton-alt'>
                 <FontAwesomeIcon className='FontAwesomeIcon' icon={faPlus} />
-              </a>
+              </button>
             </div>
           </div>
         }
