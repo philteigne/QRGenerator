@@ -27,7 +27,7 @@ const QRSettingsModal = (
   };
 
   useEffect(() => {
-    if (Number(QRSettingsUpdate.height) < 50 || isNaN(Number(QRSettingsUpdate.height))) {
+    if (QRSettingsUpdate.height < 50 || isNaN(QRSettingsUpdate.height)) {
       setQRSettingsHeight('QRSettingsInput inputError');
     } else {
       setQRSettingsHeight('QRSettingsInput');
@@ -35,7 +35,7 @@ const QRSettingsModal = (
   }, [QRSettingsUpdate.height])
 
   useEffect(() => {
-    if (Number(QRSettingsUpdate.width) < 50 || isNaN(Number(QRSettingsUpdate.width))) {
+    if (QRSettingsUpdate.width < 50 || isNaN(QRSettingsUpdate.width)) {
       setQRSettingsWidth('QRSettingsInput inputError');
     } else {
       setQRSettingsWidth('QRSettingsInput');
@@ -43,7 +43,7 @@ const QRSettingsModal = (
   }, [QRSettingsUpdate.width])
   
   useEffect(() => {
-    if (Number(QRSettingsUpdate.margin) < 0) {
+    if (QRSettingsUpdate.margin < 0) {
       setQRSettingsMargin('QRSettingsInput inputError');
     } else {
       setQRSettingsMargin('QRSettingsInput');
@@ -92,7 +92,7 @@ const QRSettingsModal = (
           <input
             className={QRSettingsWidth}
             type="number"
-            value={Number(QRSettingsUpdate.width)}
+            value={QRSettingsUpdate.width}
             placeholder='0'
             onChange={e => setQRSettingsUpdate({...QRSettingsUpdate, width: parseFloat(e.target.value)})}
           />
@@ -117,7 +117,7 @@ const QRSettingsModal = (
           <input
             className={QRSettingsHeight}
             type="number"
-            value={Number(QRSettingsUpdate.height)}
+            value={QRSettingsUpdate.height}
             placeholder='0'
             onChange={e => setQRSettingsUpdate({...QRSettingsUpdate, height: parseFloat(e.target.value)})}
           />
@@ -142,9 +142,9 @@ const QRSettingsModal = (
           <input
             className={QRSettingsMargin}
             type="number"
-            value={QRSettingsUpdate.margin === 0 ? "" : Number(QRSettingsUpdate.margin)}
+            value={QRSettingsUpdate.margin === 0 ? "" : QRSettingsUpdate.margin}
             placeholder='0'
-            onChange={e => setQRSettingsUpdate({...QRSettingsUpdate, margin: e.target.value === "" ? 0 : parseInt(e.target.value)})}
+            onChange={e => setQRSettingsUpdate({...QRSettingsUpdate, margin: e.target.value === "" ? 0 : parseFloat(e.target.value)})}
           />
           <button
             type="button"
