@@ -520,6 +520,15 @@ button.QRSettingsCloseButton {
   margin-left: 12px;
 }
 
+.inputError {
+  background-color: #FFDFDE;
+  border: solid 1px #B0413E
+}
+
+.labelError {
+  color: #B0413E;
+}
+
 @media only screen and (min-width: 768px) {
   .listInputContainer {
     display: flex;
