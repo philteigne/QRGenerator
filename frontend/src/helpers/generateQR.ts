@@ -2,8 +2,11 @@ import JSZip from "jszip";
 const QRCode = require('qrcode')
 
 
-export const generateQRCodeWeb = (QRCanvas: React.RefObject<HTMLCanvasElement>, input: string) => {
-
+export const generateQRCodeWeb = (
+  QRCanvas: React.RefObject<HTMLCanvasElement>,
+  input: string,
+  errorCorrectionInput: 'L' | 'M' | 'Q' | 'H'
+) => {
   if (!QRCanvas.current) {
     return;
   }
@@ -11,7 +14,7 @@ export const generateQRCodeWeb = (QRCanvas: React.RefObject<HTMLCanvasElement>, 
   const canvasWidth = QRCanvas.current.clientWidth;
   const canvasHeight = QRCanvas.current.clientHeight;
 
-  QRCode.toCanvas(QRCanvas.current, input, {width: canvasWidth, height: canvasHeight}, (error: any) => {
+  QRCode.toCanvas(QRCanvas.current, input, {width: canvasWidth, height: canvasHeight, errorCorrectionLevel: errorCorrectionInput}, (error: any) => {
     if (error) {
       console.log(error)
     } else {
@@ -20,8 +23,14 @@ export const generateQRCodeWeb = (QRCanvas: React.RefObject<HTMLCanvasElement>, 
   })
 }
 
-export const generateQRCodeFile = (input: string) => {
-  QRCode.toString(input, { type: 'svg' }, (error: any, svg: string) => {
+export const generateQRCodeFile = (
+  input: string,
+  errorCorrectionInput: 'L' | 'M' | 'Q' | 'H',
+  widthInput:Number,
+  heightInput:Number,
+  marginInput:Number
+) => {
+  QRCode.toString(input, { type: 'svg', errorCorrectionLevel: errorCorrectionInput, width: widthInput, height: heightInput, margin: marginInput }, (error: any, svg: string) => {
     if (error) {
       console.log(error);
     } else {
