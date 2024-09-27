@@ -1,4 +1,4 @@
-import {useState} from "react"
+import {useState, useEffect} from "react"
 
 import { stateObject, QRSettingsObject } from "../interfaces/StateInterfaces";
 import { faArrowsRotate, faXmark } from '@fortawesome/free-solid-svg-icons'
@@ -16,11 +16,39 @@ const QRSettingsModal = (
     margin: 1
   }
 
-  const [QRSettingsUpdate, setQRSettingsUpdate] = useState(state.QRSettings);
+  const [QRSettingsHeight, setQRSettingsHeight] = useState<'QRSettingsInput' | 'QRSettingsInput inputError'>('QRSettingsInput')
+  const [QRSettingsWidth, setQRSettingsWidth] = useState<'QRSettingsInput' | 'QRSettingsInput inputError'>('QRSettingsInput')
+  const [QRSettingsMargin, setQRSettingsMargin] = useState<'QRSettingsInput' | 'QRSettingsInput inputError'>('QRSettingsInput')
+
+  const [QRSettingsUpdate, setQRSettingsUpdate] = useState<QRSettingsObject>(state.QRSettings);
 
   const handleClose = () => {
     dispatch({ type: "TOGGLE_QRSETTINGS_MODAL", payload: false });
   };
+
+  useEffect(() => {
+    if (Number(QRSettingsUpdate.height) < 50 || isNaN(Number(QRSettingsUpdate.height))) {
+      setQRSettingsHeight('QRSettingsInput inputError');
+    } else {
+      setQRSettingsHeight('QRSettingsInput');
+    }
+  }, [QRSettingsUpdate.height])
+
+  useEffect(() => {
+    if (Number(QRSettingsUpdate.width) < 50 || isNaN(Number(QRSettingsUpdate.width))) {
+      setQRSettingsWidth('QRSettingsInput inputError');
+    } else {
+      setQRSettingsWidth('QRSettingsInput');
+    }
+  }, [QRSettingsUpdate.width])
+  
+  useEffect(() => {
+    if (Number(QRSettingsUpdate.margin) < 0) {
+      setQRSettingsMargin('QRSettingsInput inputError');
+    } else {
+      setQRSettingsMargin('QRSettingsInput');
+    }
+  }, [QRSettingsUpdate.margin])
 
   return(
     <div className="QRSettingsModal">
@@ -51,13 +79,21 @@ const QRSettingsModal = (
           </button>
         </div>
 
-        <label>Width (px):</label>
+        {QRSettingsWidth === 'QRSettingsInput' ?
+          <label>
+            Width (px)
+          </label>
+          :
+          <label>
+            Width (px) <p className="labelError">Should be 50px or greater</p>
+          </label>
+        }
         <div className="QRSettingsInputContainer">
           <input
-            className="QRSettingsInput"
+            className={QRSettingsWidth}
             type="number"
             value={Number(QRSettingsUpdate.width)}
-            placeholder={String(state.QRSettings.width)}
+            placeholder='0'
             onChange={e => setQRSettingsUpdate({...QRSettingsUpdate, width: parseFloat(e.target.value)})}
           />
           <button
@@ -68,13 +104,21 @@ const QRSettingsModal = (
           </button>
         </div>
 
-        <label>Height (px):</label>
+        {QRSettingsHeight === 'QRSettingsInput' ?
+          <label>
+            Height (px)
+          </label>
+          :
+          <label>
+            Height (px) <p className="labelError">Should be 50px or greater</p>
+          </label>
+        }
         <div className="QRSettingsInputContainer">
           <input
-            className="QRSettingsInput"
+            className={QRSettingsHeight}
             type="number"
             value={Number(QRSettingsUpdate.height)}
-            placeholder={String(state.QRSettings.height)}
+            placeholder='0'
             onChange={e => setQRSettingsUpdate({...QRSettingsUpdate, height: parseFloat(e.target.value)})}
           />
           <button
@@ -85,14 +129,22 @@ const QRSettingsModal = (
           </button>
         </div>
 
-        <label>Margin (px):</label>
+        {QRSettingsMargin === 'QRSettingsInput' ?
+          <label>
+            Margin (px)
+          </label>
+          :
+          <label>
+            Margin (px) <p className="labelError">Should be 0px or greater</p>
+          </label>
+        }
         <div className="QRSettingsInputContainer">
           <input
-            className="QRSettingsInput"
+            className={QRSettingsMargin}
             type="number"
-            value={Number(QRSettingsUpdate.margin)}
-            placeholder={String(state.QRSettings.margin)}
-            onChange={e => setQRSettingsUpdate({...QRSettingsUpdate, margin: parseFloat(e.target.value)})}
+            value={QRSettingsUpdate.margin === 0 ? "" : Number(QRSettingsUpdate.margin)}
+            placeholder='0'
+            onChange={e => setQRSettingsUpdate({...QRSettingsUpdate, margin: e.target.value === "" ? 0 : parseInt(e.target.value)})}
           />
           <button
             type="button"
@@ -114,9 +166,13 @@ const QRSettingsModal = (
         </button>
         <button
           onClick={() => {
+            // Pre-Check
+            if (QRSettingsHeight !== 'QRSettingsInput' && QRSettingsWidth !== 'QRSettingsInput' && QRSettingsMargin !== 'QRSettingsInput') {
+              return;
+            }
+            
             dispatch({type: "SET_QRSETTINGS", payload: QRSettingsUpdate});
             handleClose();
-            console.log(state.QRSettingsModal)
           }}
         >
           Save
