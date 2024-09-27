@@ -8,6 +8,13 @@ const initialState: stateObject = {
   inputType: 'listInput',
   appView: 'input',
   errorMsg: '',
+  QRSettingsModal: false,
+  QRSettings: {
+    errorCorrection: 'L',
+    height: 200,
+    width: 200,
+    margin: 1
+  }
 };
 
 const reducer = (state:stateObject, action:actionObject): stateObject => {
@@ -37,7 +44,17 @@ const reducer = (state:stateObject, action:actionObject): stateObject => {
         ...state,
         errorMsg: action.payload,
       }
-    
+    case "TOGGLE_QRSETTINGS_MODAL":
+      return {
+        ...state,
+        QRSettingsModal: action.payload
+      }
+    case "SET_QRSETTINGS":
+      return {
+        ...state,
+        QRSettings: action.payload
+      }
+
     default:
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`
